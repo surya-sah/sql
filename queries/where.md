@@ -50,3 +50,24 @@ SELECT * FROM Employees WHERE manager_id IS NULL;
 SELECT * FROM Employees
 WHERE department = 'HR' AND salary > 50000;
 -- Result: Alice, Amy
+
+---
+## Sample Table: reviews
+review_id	user_id	submit_date	product_id	stars
+6171	123	06/08/2022 00:00:00	50001	4
+4582	562	06/15/2022 00:00:00	12580	4
+7802	265	06/10/2022 00:00:00	69852	4
+5293	362	06/18/2022 00:00:00	50001	3
+6352	192	07/26/2022 00:00:00	69852	3
+4517	981	07/05/2022 00:00:00	69852	2
+
+--the review should have 4 or more stars,the review ID is less than 6000,the review ID is more than 2000,the review can't come from user 142
+SELECT * FROM reviews where 
+stars>4 AND
+review_id<6000 AND
+review_id>2000 AND
+user_id !=142
+;
+--the start count is greater than 2, and less than or equal to 4 ,the review must come from either user 123, 265, or 362
+SELECT * FROM reviews
+WHERE stars>2 AND stars<=4  AND user_id IN (123,265,362);
